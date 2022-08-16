@@ -13,8 +13,8 @@ module.exports = async function(deployer, network, accounts) {
 
 
     // BSC Testnet
-	//Deploy MasterChef, Cake Addr, Dev Addr no. 10 on truffle
-	await deployer.deploy(MasterChefV2, eggToken.address, '0x90a344bed9e4114D8C4D0D929E2db6ecCb2392E7', '0x2E944214dFe05869fCB2E0D425a359A730ecEF00', '100', '9265000')
+	//Deploy MasterChef, SIMP Addr, Dev Addr no. 10 on truffle               //Devaddress here //                //   Feeaddress here //     // amount tokens per block // start block from polygonscan//
+	await deployer.deploy(MasterChefV2, eggToken.address, '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '3', '31970635')
 	const masterChefV2 = await MasterChefV2.deployed()
     
 }
