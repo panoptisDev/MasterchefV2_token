@@ -1,0 +1,19 @@
+const LakeToken = artifacts.require('LakeToken')
+const MasterChefV2 = artifacts.require('MasterChefV2')
+
+module.exports = async function(deployer, network, accounts) {
+	//Deploy LakeToken 
+	await deployer.deploy(LakeToken)
+	const lakeToken = await LakeToken.deployed()
+
+    // GANACHE Deploy
+	//Deploy MasterChef, Lake Addr, Dev Addr no. 10 on truffle
+	// await deployer.deploy(MasterChefV2, eggToken.address, '0x0115e58977Bf6710Bed3Bd19Bf016e55D7b853E9', '0xCB9b5AD20C0e171F060F574AD2E446f49a37aF95', '100', '1100')
+	// const masterChefV2 = await MasterChefV2.deployed()
+
+
+    // BSC Testnet
+	//Deploy MasterChef, LAKE Addr, Dev Addr no. 10 on truffle               //Devaddress here //                //   Feeaddress here //     // amount tokens per block // start block from polygonscan//
+	await deployer.deploy(MasterChefV2, lakeToken.address, '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '10', '8538999')
+	const masterChefV2 = await MasterChefV2.deployed()   
+}

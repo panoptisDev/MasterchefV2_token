@@ -1,21 +1,19 @@
-const EggToken = artifacts.require('EggToken')
-const MasterChefV2 = artifacts.require('MasterChefV2')
+//const LakeToken = artifacts.require("LakeToken.sol");
+const MasterChefV2 = artifacts.require("MasterChefV2.sol");
 
-module.exports = async function(deployer, network, accounts) {
-	//Deploy EggToken 
-	await deployer.deploy(EggToken)
-	const eggToken = await EggToken.deployed()
-
-    // GANACHE Deploy
-	//Deploy MasterChef, Cake Addr, Dev Addr no. 10 on truffle
-	// await deployer.deploy(MasterChefV2, eggToken.address, '0x0115e58977Bf6710Bed3Bd19Bf016e55D7b853E9', '0xCB9b5AD20C0e171F060F574AD2E446f49a37aF95', '100', '1100')
-	// const masterChefV2 = await MasterChefV2.deployed()
-
-
-    // BSC Testnet
-	//Deploy MasterChef, SIMP Addr, Dev Addr no. 10 on truffle               //Devaddress here //                //   Feeaddress here //     // amount tokens per block // start block from polygonscan//
-	await deployer.deploy(MasterChefV2, eggToken.address, '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '0x33c39cace33ad92579d1a1969201af58d4e3abbf', '3', '31970635')
-	const masterChefV2 = await MasterChefV2.deployed()
-    
-}
-   
+module.exports = async function (deployer, network, addresses) {
+    //await deployer.deploy(LakeToken);
+    //const laketoken = await LakeToken.deployed();
+    // laketoken, devaddr, feeaddr, laketokenPerBlock, startBlock
+    //await deployer.deploy(MasterChefV2, laketoken.address, '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '10', 1677115744);
+    //const masterChefV2 = await MasterChefV2.deployed();
+    await deployer.deploy(MasterChefV2, '0x95963AF52b346dDB68A4D0742C86f451D3fe92A1', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '10', 27477606);
+    const masterChefV2 = await MasterChefV2.deployed();
+};
+/*
+// if you want to deploy a existing token address
+module.exports = async function (deployer, network, addresses) {
+    // laketoken, devaddr, feeaddr, laketokenPerBlock, startBlock
+  await deployer.deploy(MasterChefV2, '0x95963AF52b346dDB68A4D0742C86f451D3fe92A1', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '10', 27477606);
+  const masterChefV2 = await MasterChefV2.deployed();
+};*/

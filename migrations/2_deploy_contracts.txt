@@ -1,0 +1,15 @@
+const LakeToken = artifacts.require('LakeToken')
+const MasterChefV2 = artifacts.require('MasterChefV2')
+
+module.exports = async function(deployer, network, accounts) {
+	//Deploy LakeToken 
+	await deployer.deploy(LakeToken)
+	const lakeToken = await LakeToken.deployed()
+	await lakeToken.mintTo ('0x770d34487A8cDBE69906A08A88455EefF1a75c46', '1000000000000000000000000') // 1 million tokens
+
+    // BSC Testnet
+	//Deploy MasterChef, LAKE Addr, Dev Addr no. 10 on truffle               //Devaddress here //                //   Feeaddress here // amount tokens per block // start block//
+	await deployer.deploy(MasterChefV2, lakeToken.address, '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '0x770d34487A8cDBE69906A08A88455EefF1a75c46', '10', '8539321')
+	const masterChefV2 = await MasterChefV2.deployed()   
+    await lakeToken.transfer (masterChefV2.address, '100000000000000000000000') // 100k tokens
+}

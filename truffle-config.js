@@ -2,6 +2,13 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require('fs');
 const mnemonic = fs.readFileSync(".secret").toString().trim();
 require('dotenv').config();
+/*
+yarn add @truffle/hdwallet-provider
+yarn add dotenv
+yarn add truffle-plugin-verify
+truffle migrate --reset --network goerli
+truffle run verify MasterChefV2@0x6C41Fe7b54799F827FA197A27c8E863C1faE5d19 --network bscTest
+*/
 module.exports = {
   plugins: ['truffle-plugin-verify'],
 
@@ -33,8 +40,8 @@ module.exports = {
     bscTest: {
       provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s3.binance.org:8545'),
       network_id: 97,
-      confirmations: 10,
-      timeoutBlocks: 2000,
+      confirmations: 4,
+      timeoutBlocks: 20000,
       skipDryRun: true
     },
     bscMain: {
@@ -44,6 +51,13 @@ module.exports = {
       timeoutBlocks: 2000,
       skipDryRun: true
     },
+    goerli: {
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc.ankr.com/eth_goerli`),
+      network_id: 5,
+      confirmations: 1,
+      timeoutBlocks: 20000,
+      skipDryRun: true
+    }, 
   },
 
   // Set default mocha options here, use special reporters etc.
